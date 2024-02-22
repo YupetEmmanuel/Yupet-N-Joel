@@ -9,6 +9,8 @@ class Buys:
            "cabbage":3000 ,"latice": 3000 ,"bread": 5000 }
     def __init__(self):
         pass
+
+    
     
 
   # class implimentation
@@ -20,14 +22,22 @@ B = Buys.dict2.get("bread")
     
     
     
-    
-  # program code
+print("......................................................")
+print("             welcome to our store                     ")
+print("......................................................")
+
+
+
+
+  # program process code
+print("                                   ")
 print("What do you want to buy?")
 print("1. tomatoes \n2. onions \n3. cabbage \n4. latice \n5. bread" )
 
 Answer_1 = input("Enter your answer :")
 
-def pre():
+def Process():
+    
     if Answer_1 == "1":
         print(Buys.dict1.get("tomatoes"))
         Answer_2 = int(input("How many do you want : "))
@@ -59,10 +69,42 @@ def pre():
 
     else:
         print("Sorry we don't have that in stock")    
-    return;
+    
 
 
-pre()
+print("thank you for shopping with us")
+print("                                 ")
+
+  # Game for user
+def Game():
+    print("would like to play a game, just for the fun of it?")
+    Answer_4 = input("Yes/No \n :").upper()
+    if Answer_4 == "YES" :
+        print("knock ! Knock!! ")
+        Answer_5 = input("Put in your answer \n :").lower()
+        print("                    ")
+        if Answer_5 == ("who's there?") or ("who is there?"): 
+            print("                       ")
+            print("Its the boogey man!!")
+            print("\U0001F023 \U0001F023 \U0001F023  \U0001F023 \U0001F023 \U0001F023 \U0001F023 \U0001F023")
+            print(".....................................................................................")
+
+        elif Answer_5 != ("who's there?") or  ("who is there?"):
+            print("That's not right try again")
+        else:
+            print("That's not possible") 
+    elif Answer_4 == "NO" :
+        print("Its always nice to have you at our store")
+    else:
+        print("its okay")
+
+ # __name__
+
+if __name__ == "__main__":
+    Process()
+    Game()
+
+
 
 
 
