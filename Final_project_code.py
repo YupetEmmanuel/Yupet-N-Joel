@@ -1,108 +1,99 @@
+import json
+import time
+import os
+from process import Process
+
 # super market registor program
+  
+with open("id.json","r") as file:
+    data = json.load(file)
 
-  # class with dictionary of items available and their prices
-class Buys:
-    dict1={"tomatoes":"price = 1100ugx per piece","onions":"price = 2000ugx per piece ",
-           "cabbage":"price = 3000ugx per piece","latice":"latice = 3000ugx per piece","bread":"price = 5000ugx per loaf"}
-    
-    dict2={"tomatoes":1100 ,"onions":2000 ,
-           "cabbage":3000 ,"latice": 3000 ,"bread": 5000 }
-    def __init__(self):
-        pass
+id_Input = input("Enter your user password : ")
 
-    
-    
+if id_Input == data["password"]:
+    #count down
+    for i in range(3,0,-1):
+        print(i)
+        time.sleep(1)
 
-  # class implimentation
-T = Buys.dict2.get("tomatoes")
-O = Buys.dict2.get("onions")
-C = Buys.dict2.get("cabbage")
-L = Buys.dict2.get("latice")
-B = Buys.dict2.get("bread")
-    
-    
-    
-print("......................................................")
-print("             welcome to our store                     ")
-print("......................................................")
+    print("......................................................")
+    time.sleep(0.5)
+    print("             welcome to our store                     ")
+    print("......................................................")
+    time.sleep(1)
 
 
 
+    # program process code
+    print("                                   ")
+    print("What do you want to buy?")
+    print("1. tomatoes \n2. onions \n3. cabbage \n4. latice \n5. bread" )
 
-  # program process code
-print("                                   ")
-print("What do you want to buy?")
-print("1. tomatoes \n2. onions \n3. cabbage \n4. latice \n5. bread" )
-
-Answer_1 = input("Enter your answer :")
-
-def Process():
-    
-    if Answer_1 == "1":
-        print(Buys.dict1.get("tomatoes"))
-        Answer_2 = int(input("How many do you want : "))
-    
-        print("Your total is = ",Answer_2*T, "ugx")
-        
-
-    
-    elif Answer_1 =="2":
-        print(Buys.dict1.get("onions"))
-        Answer_2 = int(input("How many do you want : "))
-        print("Your total is = ",Answer_2*O, "ugx")
-   
-    elif Answer_1 =="3":
-        print(Buys.dict1.get("cabbage"))
-        Answer_2 = int(input("How many do you want : "))
-        print("Your total is = ",Answer_2*C, "ugx")
+  
+  
+    # Game for user
 
 
-    elif Answer_1 == "4":
-        print(Buys.dict1.get("latice"))
-        Answer_2 = int(input("How many do you want : ")) 
-        print("Your total is = ",Answer_2*L, "ugx")
+    def Game():
+        print("would like to play a game, just for the fun of it?")
+        Answer_4 = input("Yes/No \n :").upper()
+        if Answer_4 == "YES" :
+            print("knock ! Knock!! ")
+            Answer_5 = input("Put in your answer \n :").lower()
+            print("                    ")
+            # create a text file and record the answer from the game
+            path = "'Game_records.txt'"
+            try:
+                if os.path.exists(path):
+                    with open('Game_records.txt' , 'a') as newfile:
+                        newfile.write(Answer_5)
 
-    elif Answer_1 == "5":
-        print(Buys.dict1.get("bread"))
-        Answer_2 = int(input("How many do you want : "))
-        print("Your total is = ",Answer_2*B, "ugx")
+                else:
+                    with open('Game_records.txt' , 'w') as newfile:
+                        newfile.write(Answer_5)
+                    
+            except FileNotFoundError:
+                print("file not found")
 
-    else:
-        print("Sorry we don't have that in stock")    
-    
+            if Answer_5 == ("who's there?") or ("who is there?"): 
+                print("                       ")
+                print("Its the boogey man!!")
+                print("\U0001F023 \U0001F023 \U0001F023  \U0001F023 \U0001F023 \U0001F023 \U0001F023 \U0001F023")
+                print(".....................................................................................")
 
-
-print("thank you for shopping with us")
-print("                                 ")
-
-  # Game for user
-def Game():
-    print("would like to play a game, just for the fun of it?")
-    Answer_4 = input("Yes/No \n :").upper()
-    if Answer_4 == "YES" :
-        print("knock ! Knock!! ")
-        Answer_5 = input("Put in your answer \n :").lower()
-        print("                    ")
-        if Answer_5 == ("who's there?") or ("who is there?"): 
-            print("                       ")
-            print("Its the boogey man!!")
-            print("\U0001F023 \U0001F023 \U0001F023  \U0001F023 \U0001F023 \U0001F023 \U0001F023 \U0001F023")
-            print(".....................................................................................")
-
-        elif Answer_5 != ("who's there?") or  ("who is there?"):
-            print("That's not right try again")
+            elif Answer_5 != ("who's there?") or  ("who is there?"):
+                print("That's not right try again")
+            else:
+                print("That's not possible") 
+        elif Answer_4 == "NO" :
+            print("Its always nice to have you at our store")
         else:
-            print("That's not possible") 
-    elif Answer_4 == "NO" :
-        print("Its always nice to have you at our store")
-    else:
-        print("its okay")
+            print("its okay")
 
- # __name__
 
-if __name__ == "__main__":
-    Process()
-    Game()
+    with open("id.json","r") as file:
+        data = json.load(file)
+        
+  
+
+        
+    # __name__
+
+    if __name__ == "__main__":
+        try:
+            Process()
+            Game()
+        except FileNotFoundError:
+            print("File not found")
+
+    print("thank you for shopping with us")
+    print("                                 ")
+
+elif id_Input != data["password"]:
+    print("incorrect password")
+
+else:
+    print("Invalid answer")
 
 
 
