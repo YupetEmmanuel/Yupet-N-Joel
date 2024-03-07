@@ -1,4 +1,5 @@
 
+import csv
 
 # class with dictionary of items available and their prices
 class Buys:
@@ -7,24 +8,8 @@ class Buys:
     
     dict2={"tomatoes":1100 ,"onions":2000 ,
            "cabbage":3000 ,"latice": 3000 ,"bread": 5000 }
-    def __init__(self,Dict1,Dict2):
-        self.__Dict1 = Dict1
-        self.__Dict2 = Dict2
-
-
-    def print_dict1(self):
-        print("This is dict1 : ", self.__Dict1)
-
-    
-
-    def print_dict2(self):
-        print("This is dict2 : ", self.__Dict2)
-
-
-
-       
-
-    
+  
+         
     
  # class implimentation
 T = Buys.dict2.get("tomatoes")
@@ -39,6 +24,12 @@ def Process():
         print(Buys.dict1.get("tomatoes"))
         Answer_2 = int(input("How many do you want : "))    
         print("Your total is = ",Answer_2*T, "ugx")
+        with open('files/shopping_csv.csv','a+') as file:
+            New_data = csv.writer(file,delimiter=' ')
+            data = [int(Answer_1),Answer_2]
+            New_data.writerow(data)
+            
+
         
 
     
@@ -46,28 +37,45 @@ def Process():
         print(Buys.dict1.get("onions"))
         Answer_2 = int(input("How many do you want : "))
         print("Your total is = ",Answer_2*O, "ugx")
+        with open('files/shopping_csv.csv','a+') as file:
+            New_data = csv.writer(file,delimiter=' ')
+            data = [int(Answer_1),Answer_2]
+            New_data.writerow(data)
+            
    
     elif Answer_1 =="3":
         print(Buys.dict1.get("cabbage"))
         Answer_2 = int(input("How many do you want : "))
         print("Your total is = ",Answer_2*C, "ugx")
+        with open('files/shopping_csv.csv','a+') as file:
+            New_data = csv.writer(file,delimiter=' ')
+            data = [int(Answer_1),Answer_2]
+            New_data.writerow(data)
+            
 
 
     elif Answer_1 == "4":
         print(Buys.dict1.get("latice"))
         Answer_2 = int(input("How many do you want : ")) 
         print("Your total is = ",Answer_2*L, "ugx")
+        with open('files/shopping_csv.csv','a+') as file:
+            New_data = csv.writer(file,delimiter=' ')
+            data = [int(Answer_1),Answer_2]
+            New_data.writerow(data)
+            
 
     elif Answer_1 == "5":
         print(Buys.dict1.get("bread"))
         Answer_2 = int(input("How many do you want : "))
         print("Your total is = ",Answer_2*B, "ugx")
+        with open('files/shopping_csv.csv','a+') as file:
+            New_data = csv.writer(file,delimiter=' ')
+            data = [int(Answer_1),Answer_2]
+            New_data.writerow(data)
+            
 
-    else
-        print("Sorry we don't have that in stock")    
+    else:
+        print("Sorry we don't have that in stock") 
 
+    
 
-
-
-d = Buys("james","peter")
-d.self.__Dict1

@@ -1,11 +1,14 @@
-import json
+
 import time
+import csv
 import os
+import json
 from process import Process
+from corrector import corrector
 
 # super market registor program
   
-with open("id.json","r") as file:
+with open("files/id.json","r") as file:
     data = json.load(file)
 
 id_Input = input("Enter your user password : ")
@@ -14,10 +17,10 @@ if id_Input == data["password"]:
     #count down
     for i in range(3,0,-1):
         print(i)
-        time.sleep(1)
+        time.sleep(0.1)
 
     print("......................................................")
-    time.sleep(0.5)
+    time.sleep(0.3)
     print("             welcome to our store                     ")
     print("......................................................")
     time.sleep(1)
@@ -38,20 +41,31 @@ if id_Input == data["password"]:
         print("would like to play a game, just for the fun of it?")
         Answer_4 = input("Yes/No \n :").upper()
         if Answer_4 == "YES" :
+            Answer_0 = input("Enter your name : ")
             print("knock ! Knock!! ")
             Answer_5 = input("Put in your answer \n :").lower()
             print("                    ")
             # create a text file and record the answer from the game
-            path = "'Game_records.txt'"
+            path = "files/csv_file.csv"
             try:
                 if os.path.exists(path):
-                    with open('Game_records.txt' , 'a') as newfile:
-                        newfile.write(Answer_5)
+                    data_to_add = [
+                        [Answer_0,Answer_5]
+                    ]
+                    with open('files/csv_file.csv' , 'a+') as newfile:
+                        writer = csv.writer(newfile, delimiter= '\t')
+                        writer.writerows(data_to_add)
+                        
 
                 else:
-                    with open('Game_records.txt' , 'w') as newfile:
-                        newfile.write(Answer_5)
-                    
+                    data_to_add = [
+                        [Answer_0,Answer_5]
+                    ]
+                    with open('files/csv_file.csv' , 'a+') as newfile:
+                        writer = csv.writer(newfile, delimiter= ',')
+                        writer.writerows(data_to_add)
+                        
+
             except FileNotFoundError:
                 print("file not found")
 
@@ -71,8 +85,6 @@ if id_Input == data["password"]:
             print("its okay")
 
 
-    with open("id.json","r") as file:
-        data = json.load(file)
         
   
 
@@ -83,6 +95,7 @@ if id_Input == data["password"]:
         try:
             Process()
             Game()
+            corrector.run_program()
         except FileNotFoundError:
             print("File not found")
 
